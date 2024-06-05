@@ -1,0 +1,214 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+	<div class="main-container">
+		<h1>Cupcake Generator</h1>
+		<div class="instructions">
+			<h2>🧁 Step 1</h2>
+			<p>
+				From this diagram, create database.
+			</p>
+			<div class="center">
+				<img src="/assets/images/diagram.png" class="diagram" alt="database model">
+			</div>
+
+			<h2>🧁 Step 2</h2>
+			<p>
+				From
+				<code>add()</code>
+				in
+				<code>AccessoryController</code>
+				<br>
+				Make the
+				<a href="/accessory/add">accessory form</a>
+				works (do not forget data validation).<br>
+				Once your form persist data in database, add some accessories for your cupcakes :
+			</p>
+			<ul>
+				<li>
+					http://images.innoveduc.fr/php_parcours/cp2/cherry.png
+				</li>
+				<li>
+					http://images.innoveduc.fr/php_parcours/cp2/donut.png
+				</li>
+				<li>
+					http://images.innoveduc.fr/php_parcours/cp2/chocolate.png
+				</li>
+				<li>
+					http://images.innoveduc.fr/php_parcours/cp2/wcs.png
+				</li>
+				<li>
+					http://images.innoveduc.fr/php_parcours/cp2/christmas-candy.png
+				</li>
+			</ul>
+
+			<h2>🧁 Step 3</h2>
+			<p>
+				From
+				<code>list()</code>
+				in
+				<code>AccessoryController</code><br>
+				Display all accessories on
+				<a href="/accessory/list">My accessories</a>
+				route.<br>
+				You are free to design this page.
+			</p>
+
+			<h2>🧁 Step 4</h2>
+			<p>
+				From
+				<code>add()</code>
+				in
+				<code>CupcakeController</code><br>
+				Make the
+				<a href="/cupcake/add">cupcake form</a>
+				works.<br>
+				Before managing the post, don't forget to manage the accessories to display them in the select field.
+			</p>
+
+			<h2>🧁 Step 5</h2>
+			<p>
+				From
+				<code>list()</code>
+				in
+				<code>CupcakeController</code><br>
+				Display all cupcakes on the list, order by ID, DESC.<br>
+				You already have a twig page (Cupcake/list.html.twig) who just expect a cupcakes array.<br>
+				Be sure to display the cupcakes accessories on this page ! (use a SQL JOIN)
+			</p>
+
+			<h2>🧁 Step 6</h2>
+			<p>
+				On the
+				<a href="/cupcake/list">Cupcake list</a>
+				there is an href link around each cupcake to show
+
+				You have to create the method and the view for this step.<br>
+				Be sure to display the cupcake accessory on this page ! (use a SQL JOIN)
+			</p>
+            <hr>
+            <p>
+                For the bonus section, you can choose between bonus 1 and bonus 2, which is a little more complex.
+                Of course, you can do both if you like 🤓.
+            </p>
+			<h2>💪 BONUS 1: Cupcake day 🎉</h2>
+            <p>
+                Your cupcakes look delicious and their accessories attract customers to the factory.
+                Their originality requires different selling prices depending on their composition.
+            </p>
+            <p>
+                And what's more, today is cupcake day! 🎉
+                <br>
+                For every three cupcakes you buy, you get a 50-cent discount at the checkout.
+            </p>
+            <p>
+                There are plenty of customers, and you'll need a high-performance calculator to apply the right price quickly.
+            </p>
+            <ol>
+                <li>
+                    Take a look at <code>/src/Service/Checkout.php</code>.
+                </li>
+                <li>
+                    <p>
+                    Create a calculate() method, which takes a multi-dimensional array $cart as its parameter.
+                    Each element of the array is an associative array containing the indexes '<strong>numberCupcake</strong>' and '<strong>unitPrice</strong>'.
+                    <br>
+                    For example, for an order of 4 cupcakes at 5.5 euros each, 3 cupcakes at 2.5 euros each and 2 cupcakes at 1.5 euros each,
+                    the <code>$cart</code> array would be constructed as follows:
+                    </p>
+                    <pre>
+                <code>
+    $cart = [
+        ['numberCupcake' => 4, 'unitPrice' => 5.5],
+        ['numberCupcake' => 3, 'unitPrice' => 2.5],
+        ['numberCupcake' => 2, 'unitPrice' => 1.5],
+    ];</code>
+            </pre>
+                    <p>
+                        Because these cupcake numbers and unit prices will be retrieved from an already implemented form,
+                        you don't have to write any data in the method, just the calculation rule.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        The <code>calculate()</code> method must return an array containing the total price
+                        at the first index, and the total price minus the discount applied (50-cent) for every three cupcakes purchased at the second index.
+                    </p>
+                    <p>
+                        In the above example, the method should therefore return
+                    </p>
+                    <pre><code>[32.5, 31]</code></pre>
+                </li>
+            </ol>
+            <p>
+                <strong>Test !!</strong>
+                <br>
+                As in code wars, you have some tests provided in file
+                <em>tests/Service/CheckoutTest</em>.
+                <br>
+                You can launch tests using the command in your terminal.
+            </p>
+            <pre><code>vendor/bin/phpunit --colors=auto tests/Service/CheckoutTest.php</code></pre>
+            <p>
+                When the method works and tests are green, look at page <a href="/cupcake-day">cupcake-day</a>, you can play with the cash register 💰.
+            </p>
+
+
+			<h2>💪💪 BONUS 2: Logistics 🚚</h2>
+			<p>
+				Now, we want to send our cupcakes. To optmize packaging, we need to put cupcakes in containers.
+												We have 3 sizes of boxes
+			</p>
+            <ul>
+                <li>Small : 2 cupakes max</li>
+                <li>Medium : 5 cupakes max</li>
+                <li>Large : 8 cupakes max</li>
+            </ul>
+			<p>
+				<u>Important !!</u>
+				An optimize packaging means a minimum number of containers and the minimum empty spaces in not full
+				containers. If we have multiple possibilities, we will try to use larger boxes first.
+			</p>
+			<ul>
+				<li>Exemple 1 : 7 cupcakes => 1 container L (and 1 empty slot)</li>
+				<li>Exemple 2 : 14 cupcakes => 2 containers L</li>
+				<li>Exemple 3 : 16 => 2 containers L</li>
+				<li>Exemple 4 : 18 => 2 containers L, 1 container S</li>
+				<li>Exemple 5 : 20 => 2 containers L, 1 container M (1 empty slot)</li>
+			</ul>
+			<p>
+				<strong>Test !!</strong>
+                <br>
+                You also have tests supplied in file
+				<em>tests/Service/ContainerTest</em>.
+                <br>
+				You can launch tests using the command in your terminal.
+            </p>
+			<pre><code>vendor/bin/phpunit --colors=auto tests/Service/ContainerTest.php</code></pre>
+
+			<ol>
+				<li>
+					Look at the file :
+					<code>/src/Service/Container.php</code>
+				</li>
+				<li>
+					In this class Container, create a method
+					<code>inbox(int $numberCake): array</code><br/>
+					which shoud return an array with:
+					<code>[number of L boxes, number of M boxes, number of S boxes]</code>
+				</li>
+				<li>
+					In this class, create 3 constants :	SMALL = 2, MEDIUM = 5 and LARGE = 8
+				</li>
+				<li>
+					When the method works and tests are green, look at page
+					<a href="/logistics">logistics</a>
+					<br>
+					You will find a form where you can indicate number of cupcakes.
+					Then, using your inbox() method, display thenumber of each container (L, M and S) from the number of
+					cupcakes submitted in the form.
+				</li>
+			</ol>
+		</div>
+	</div>
+{% endblock %}

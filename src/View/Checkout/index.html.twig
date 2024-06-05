@@ -1,0 +1,116 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<div class="main-container">
+    <h1>Cupcake day 🎉</h1>
+    <p>
+        Get a 50-cent discount every three cupcakes you buy.
+    </p>
+    <form action="" method="post">
+        <table>
+            <thead>
+                <tr>
+                    <th>Number of cupcakes</th>
+                    <th>Unit price</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+            {% for cartItem in cart %}
+                <tr>
+                    <td>
+                        <input
+                            aria-label="Number of cupcakes"
+                            type="number"
+                            min="0"
+                            data-index="{{ loop.index0 }}"
+                            name="cart[{{ loop.index0 }}][numberCupcake]"
+                            value="{{ cartItem.numberCupcake }}">
+                    </td>
+                    <td>
+                        <input
+                            aria-label="Unit price"
+                            type="number"
+                            min="0"
+                            step=".01"
+                            name="cart[{{ loop.index0 }}][unitPrice]"
+                            value="{{ cartItem.unitPrice }}">
+                    </td>
+                    <td>
+                        <button
+                            type="button"
+                            class="btn primary-btn" data-remove-item="">
+                            -
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <button
+                            type="button"
+                            class="btn secondary-btn" id="addItem">
+                            +
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Total cupcakes</th>
+                    <th>{{ cart|reduce((carry, v) => carry + v.numberCupcake) }}</th>
+                </tr>
+                <tr>
+                    <th>Total price</th>
+                    <th><del>{{ bill.0 }}</del></th>
+                </tr>
+                <tr>
+                    <th>Final price</th>
+                    <th>{{ bill.1}} 💰</th>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="form-btn">
+            <button class="btn primary-btn">
+                Calculate
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script src="/assets/js/mustache.min.js"></script>
+<script src="/assets/js/script.js"></script>
+{% verbatim %}
+<script id="template" type="x-tmpl-mustache">
+    <tr>
+        <td>
+            <input
+                aria-label="Number of cupcakes"
+                type="number"
+                min="0"
+                data-index="{{ index }}"
+                name="cart[{{ index }}][numberCupcake]"
+                value="0">
+        </td>
+        <td>
+            <input
+                aria-label="Unit price"
+                type="number"
+                min="0"
+                step=".01"
+                name="cart[{{index}}][unitPrice]"
+                value="0">
+        </td>
+        <td>
+            <button type="button" class="btn primary-btn" data-remove-item="">
+                -
+            </button>
+        </td>
+    </tr>
+</script>
+{% endverbatim %}
+{% endblock %}
