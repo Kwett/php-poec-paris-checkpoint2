@@ -37,34 +37,6 @@ CREATE TABLE `cupcake` (
     FOREIGN KEY (`accessory_id`) REFERENCES `accessory`(`id`)
 );
 
-🧁 Step 2
-
-From add() in AccessoryController
-Make the accessory form works (do not forget data validation).
-Once your form persist data in database, add some accessories for your cupcakes :
-
-    http://images.innoveduc.fr/php_parcours/cp2/cherry.png
-    http://images.innoveduc.fr/php_parcours/cp2/donut.png
-    http://images.innoveduc.fr/php_parcours/cp2/chocolate.png
-    http://images.innoveduc.fr/php_parcours/cp2/wcs.png
-    http://images.innoveduc.fr/php_parcours/cp2/christmas-candy.png
-
-🧁 Step 3
-
-From list() in AccessoryController
-Display all accessories on My accessories route.
-You are free to design this page.
-🧁 Step 4
-
-From add() in CupcakeController
-Make the cupcake form works.
-Before managing the post, don't forget to manage the accessories to display them in the select field.
-🧁 Step 5
-
-From list() in CupcakeController
-Display all cupcakes on the list, order by ID, DESC.
-You already have a twig page (Cupcake/list.html.twig) who just expect a cupcakes array.
-Be sure to display the cupcakes accessories on this page ! (use a SQL JOIN)
 🧁 Step 6
 
 On the Cupcake list there is an href link around each cupcake to show You have to create the method and the view for this step.

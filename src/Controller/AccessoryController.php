@@ -26,11 +26,13 @@ class AccessoryController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
+
     public function add()
     {
+        $errors = [];
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $accessory = array_map('htmlentities', array_map('trim', $_POST));
-            $errors = [];
 
             if (empty($accessory['name']) ||
                 empty($accessory['url']))
@@ -43,7 +45,9 @@ class AccessoryController extends AbstractController
                 header('Location:/accessory/list');
             }
         }
-        return $this->twig->render('Accessory/add.html.twig');
+        return $this->twig->render('Accessory/add.html.twig', [
+            'errors' => $errors,
+        ]);
     }
 
     /**
@@ -56,7 +60,9 @@ class AccessoryController extends AbstractController
      */
     public function list()
     {
-        //TODO Add your code here to retrieve all accessories
-        return $this->twig->render('Accessory/list.html.twig');
+        $accessories = $this->accessoryManager->getAllAccessories();
+        return $this->twig->render('Accessory/list.html.twig', [
+            'accessories' => $accessories
+        ]);
     }
 }

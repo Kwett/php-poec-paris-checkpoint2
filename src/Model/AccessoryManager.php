@@ -19,4 +19,11 @@ class AccessoryManager extends AbstractManager
         $statement->bindValue(':url', $accessory['url'], PDO::PARAM_STR);
         $statement->execute();
     }
+
+    public function getAllAccessories(): array
+    {
+        $query = "SELECT * FROM accessory ORDER BY id DESC";
+        $statement = $this->pdo->query($query);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
