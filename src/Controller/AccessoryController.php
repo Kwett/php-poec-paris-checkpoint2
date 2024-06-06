@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Model\AccessoryManager;
+
 /**
  * Class AccessoryController
  *
@@ -16,11 +18,24 @@ class AccessoryController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
+
+    private $accessoryManager;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->accessoryManager = new AccessoryManager();
+    }
     public function add()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            //TODO Add your code here to create a new accessory
-            header('Location:/accessory/list');
+            try {
+                $this->accessoryManager->save($_POST['name'], $_POST['url']);
+                header('Location: /accessory/list');
+            } catch (\Exception $e) {
+                echo 'An error occurred: ' . $e->getMessage();
+                header('Location: /accessory/add');
+            }
         }
         return $this->twig->render('Accessory/add.html.twig');
     }
