@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Model\AccessoryManager;
 /**
  * Class AccessoryController
  *
@@ -18,11 +19,27 @@ class AccessoryController extends AbstractController
      */
     public function add()
     {
+        $accessory = [];
+        $accesManager = new AccessoryManager();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             //TODO Add your code here to create a new accessory
+            $accessory = $_POST;
+
+            foreach ($accessory as $key => $value) {
+                $accessory[$key] = is_string($value) ? trim($value) : $value;
+            }
+
+            $id = $accesManager->insert($accessory);
+            
             header('Location:/accessory/list');
         }
-        return $this->twig->render('Accessory/add.html.twig');
+        return $this->twig->render(
+            'Accessory/add.html.twig',
+            [
+                'accessory' => $accessory,
+            ]
+        );
     }
 
     /**
@@ -33,9 +50,18 @@ class AccessoryController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function list()
+    public function list($orderBy = '', $direction = 'ASC')
     {
+        $accesManager = new AccessoryManager();
+
+        $accessory = $accesManager->selectAll($orderBy, $direction);
+        
         //TODO Add your code here to retrieve all accessories
-        return $this->twig->render('Accessory/list.html.twig');
+        return $this->twig->render(
+            'Accessory/list.html.twig',
+            [
+                'accessories' => $accessory,
+            ]
+        );
     }
 }
