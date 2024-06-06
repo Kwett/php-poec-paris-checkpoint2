@@ -39,10 +39,11 @@ class CupcakeManager extends AbstractManager
     {
         // prepared request
         $statement = $this->pdo->prepare(
-        "SELECT c.*, a.name AS accessory, a.url AS `url` FROM " . static::TABLE . " AS c 
+            "SELECT c.*, a.name AS accessory, a.url AS `url` FROM " . static::TABLE . " AS c 
         INNER JOIN accessory AS a 
         ON c.accessory_id=a.id 
-        WHERE c.id=:id");
+        WHERE c.id=:id"
+        );
         $statement->bindValue('id', $id, PDO::PARAM_INT);
         $statement->execute();
 
