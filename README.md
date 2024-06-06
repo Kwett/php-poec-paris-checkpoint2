@@ -37,17 +37,6 @@ CREATE TABLE `cupcake` (
     FOREIGN KEY (`accessory_id`) REFERENCES `accessory`(`id`)
 );
 
-For the bonus section, you can choose between bonus 1 and bonus 2, which is a little more complex. Of course, you can do both if you like 🤓.
-💪 BONUS 1: Cupcake day 🎉
-
-Your cupcakes look delicious and their accessories attract customers to the factory. Their originality requires different selling prices depending on their composition.
-
-And what's more, today is cupcake day! 🎉
-For every three cupcakes you buy, you get a 50-cent discount at the checkout.
-
-There are plenty of customers, and you'll need a high-performance calculator to apply the right price quickly.
-
-    Take a look at /src/Service/Checkout.php.
 
     Create a calculate() method, which takes a multi-dimensional array $cart as its parameter. Each element of the array is an associative array containing the indexes 'numberCupcake' and 'unitPrice'.
     For example, for an order of 4 cupcakes at 5.5 euros each, 3 cupcakes at 2.5 euros each and 2 cupcakes at 1.5 euros each, the $cart array would be constructed as follows:
@@ -58,10 +47,7 @@ There are plenty of customers, and you'll need a high-performance calculator to 
             ['numberCupcake' => 3, 'unitPrice' => 2.5],
             ['numberCupcake' => 2, 'unitPrice' => 1.5],
         ];
-                
-
-    Because these cupcake numbers and unit prices will be retrieved from an already implemented form, you don't have to write any data in the method, just the calculation rule.
-
+  
     The calculate() method must return an array containing the total price at the first index, and the total price minus the discount applied (50-cent) for every three cupcakes purchased at the second index.
 
     In the above example, the method should therefore return

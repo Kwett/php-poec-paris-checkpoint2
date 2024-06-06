@@ -13,4 +13,18 @@ class Checkout
      * and the total price minus the discount applied (50-cent) for every three cupcakes purchased at the second index
      * ⬇️ create the calculate() method here ⬇️
      */
+
+     public function calculate(array $cart): array
+     {
+        $bill = [];
+        $totalPrice = 0;
+
+        foreach($cart as $cupcake) {
+            $totalPrice += $cupcake['numberCupcake'] * $cupcake['unitPrice'];
+        }
+
+        $bill[] = $totalPrice;
+
+        return $bill;
+    }
 }
