@@ -1,11 +1,12 @@
 <?php
+
 namespace App\Model;
 
 use PDO;
 
 class AccessoryManager extends AbstractManager
 {
-    private const TABLE = "accessory";
+    public const TABLE = "accessory";
 
     public function insert(array $accessory): bool
     {
