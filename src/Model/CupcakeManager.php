@@ -21,4 +21,18 @@ class CupcakeManager extends AbstractManager
 
         $statement->execute();
     }
+    public function selectAll(string $orderBy = 'id', string $direction = 'DESC'): array
+    {
+        $query = 'SELECT c.*, a.url AS `url` FROM ' . static::TABLE . " AS c 
+        INNER JOIN accessory AS a 
+        ON c.accessory_id=a.id";
+
+        if ($orderBy) {
+            $query .= ' ORDER BY ' . $orderBy . ' ' . $direction;
+        }
+
+        $query .= ";";
+
+        return $this->pdo->query($query)->fetchAll();
+    }
 }
