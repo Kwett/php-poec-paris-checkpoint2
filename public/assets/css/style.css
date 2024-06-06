@@ -209,3 +209,8 @@ td input {
 tfoot th:first-child{
     text-align: right;
 }
+
+img {
+    max-height: 5rem;
+    max-width: 5rem;
+}

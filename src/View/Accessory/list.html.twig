@@ -1,8 +1,14 @@
-{% extends 'layout.html.twig' %}
-
-{% block content %}
-    <div class="main-container">
-        <h1>My accessories</h1>
-        {# TODO Display all accessories here #}
-    </div>
+{% extends 'layout.html.twig' %} {% block content %}
+<div class="main-container">
+    <h1>My accessories</h1>
+    <ul>
+        {% for accessory in accessories %}
+        <li>
+            <h4>{{ accessory.name }}</h4>
+            <img src="{{ accessory.url }}" alt="{{ accessory.name }}"
+            />
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}
