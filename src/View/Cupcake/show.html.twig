@@ -1,0 +1,13 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+        <link rel="stylesheet" href="/assets/css/cupcakeshow.css">
+{% endblock %}
+
+{% block content %}
+<div class='cupcakeshow'>
+    <h1>Cupcake :</h1>
+    {% include 'Cupcake/_cupcake.html.twig' %}
+    <h1>Accessory : {{cupcake.accessory}}</h1>
+</div>
+{% endblock %}
