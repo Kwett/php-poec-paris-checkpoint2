@@ -37,11 +37,6 @@ CREATE TABLE `cupcake` (
     FOREIGN KEY (`accessory_id`) REFERENCES `accessory`(`id`)
 );
 
-🧁 Step 6
-
-On the Cupcake list there is an href link around each cupcake to show You have to create the method and the view for this step.
-Be sure to display the cupcake accessory on this page ! (use a SQL JOIN)
-
 For the bonus section, you can choose between bonus 1 and bonus 2, which is a little more complex. Of course, you can do both if you like 🤓.
 💪 BONUS 1: Cupcake day 🎉
 

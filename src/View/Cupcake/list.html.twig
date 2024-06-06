@@ -2,13 +2,14 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div class="main-container">
+   <div class="main-container">
         <h1>My cupcakes</h1>
         <div class="cupcake-list" id="cupcake-list">
         {% for cupcake in cupcakes %}
             <div class="cupcake-item">
-                <a href="/cupcake/show?id={{ cupcake.id }}">
+                <a href="/cupcake/show?id={{ cupcake.cupcake_id }}">
                     {% include 'Cupcake/_cupcake.html.twig' %}
+                    {{ cupcake.id }}
                 </a>
             </div>
         {% else %}

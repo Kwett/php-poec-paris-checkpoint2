@@ -4,13 +4,13 @@
     <div class="cupcake-container">
     <h1>Your beautiful cupcake</h1>
     <div class="cupcake">
-        <img src="{{ cupcake.url ?? 'http://images.innoveduc.fr/php_parcours/cp2/donut.png' }}" alt="accessory">
+        <img src="{{ cupcake.0.url ?? 'http://images.innoveduc.fr/php_parcours/cp2/donut.png' }}" alt="accessory">
         <div class="cream">
-            <div class="cream-1" style="background-color: {{ cupcake.color1 ?? 'var(--default-cream-color)' }};">
+            <div class="cream-1" style="background-color: {{ cupcake.0.color1 ?? 'var(--default-cream-color)' }};">
             </div>
-            <div class="cream-2" style="background-color: {{ cupcake.color2 ?? 'var(--default-cream-color)' }};">
+            <div class="cream-2" style="background-color: {{ cupcake.0.color2 ?? 'var(--default-cream-color)' }};">
             </div>
-            <div class="cream-3" style="background-color: {{ cupcake.color3 ?? 'var(--default-cream-color)' }};">
+            <div class="cream-3" style="background-color: {{ cupcake.0.color3 ?? 'var(--default-cream-color)' }};">
             </div>
         </div>
         <div class="bottom">
@@ -26,6 +26,7 @@
         </div>
     </div>
 
-    <div class="cupcake-name">{{ cupcake.name }}</div>
+    <div class="cupcake-name">{{ cupcake.0.name }}</div>
+    <a href="/cupcake/list">BACK</a>
 </div>
 {% endblock %}
