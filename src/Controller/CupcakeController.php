@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Service\Container;
+use App\Model\CupcakeManager;
+use App\Model\AccessoryManager;
 
 /**
  * Class CupcakeController
@@ -21,11 +23,16 @@ class CupcakeController extends AbstractController
     public function add()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            //TODO Add your code here to create a new cupcake
+            $cupcake = array_map('htmlentities', array_map('trim', $_POST));
+            $cupcakeManager = new CupcakeManager();
+            $cupcakeManager->insert($cupcake);
             header('Location:/cupcake/list');
         }
-        //TODO retrieve all accessories for the select options
-        return $this->twig->render('Cupcake/add.html.twig');
+        $accessoryManager = new AccessoryManager();
+        $accessories = $accessoryManager->selectAll();
+        return $this->twig->render('Cupcake/add.html.twig', [
+            'accessories' => $accessories
+        ]);
     }
 
     /**
@@ -38,7 +45,6 @@ class CupcakeController extends AbstractController
      */
     public function list()
     {
-        //TODO Retrieve all cupcakes
         return $this->twig->render('Cupcake/list.html.twig');
     }
 }
