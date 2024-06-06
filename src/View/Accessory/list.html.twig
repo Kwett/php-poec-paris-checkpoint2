@@ -3,6 +3,16 @@
 {% block content %}
     <div class="main-container">
         <h1>My accessories</h1>
-        {# TODO Display all accessories here #}
+        <ul>
+            {% for accessory in accessories %}
+                <li>
+                    <h2>{{ accessory.name }}</h2>
+                    <img src="{{ accessory.url }}" alt="{{ accessory.name }}" style="max-width: 100px;">
+                    <p><a href="{{ accessory.url }}" target="_blank">View Image</a></p>
+                </li>
+            {% else %}
+                <p>No accessories found.</p>
+            {% endfor %}
+        </ul>
     </div>
 {% endblock %}

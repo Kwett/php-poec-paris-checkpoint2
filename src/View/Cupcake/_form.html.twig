@@ -1,11 +1,11 @@
 <form method="post">
     <div class="form-group">
         <label for="name">Cupcake name</label>
-        <input type="text" name="name" id="name">
+        <input type="text" name="name" id="name" required>
     </div>
     <div class="form-group">
         <label for="color1">Color first cream</label>
-        <input type="color" name="color1" id="color1">
+        <input type="color" name="color1" id="color1" required>
     </div>
     <div class="form-group">
         <label for="color2">Color second cream</label>
@@ -18,11 +18,12 @@
     <div class="form-group">
         <label for="accessory">Accessory</label>
         <select name="accessory" id="accessory">
-            {# TODO Add accessories options here #}
+            {% for accessory in accessories %}
+                <option value="{{ accessory.id }}">{{ accessory.name }}</option>
+            {% endfor %}
         </select>
-
     </div>
     <div class="form-btn">
-    <button class="btn primary-btn">Create this cupcake</button>
+        <button class="btn primary-btn">Create this cupcake</button>
     </div>
 </form>
