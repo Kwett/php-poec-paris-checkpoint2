@@ -1,0 +1,21 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div class="main-container">
+        <div class="cupcake">
+            <div class="cupcake-item">
+                <a href="/cupcake/show?id={{ cupcake.id }}">
+                    {% include 'Cupcake/_cupcake.html.twig' %}
+
+        </div>
+
+        <h1>{{ cupcake.name }}</h1>
+        <p>ID: {{ cupcake.id }}</p>
+        <p>Color 1: {{ cupcake.color1 }}</p>
+        <p>Color 2: {{ cupcake.color2 }}</p>
+        <p>Color 3: {{ cupcake.color3 }}</p>
+        <p>Accessory ID: {{ cupcake.accessory_id }}</p>
+        <p>Accessory Name: {{ cupcake.accessory_name }}</p>
+        <p>Created At: {{ cupcake.created_at }}</p>
+    </div>
+{% endblock %}
