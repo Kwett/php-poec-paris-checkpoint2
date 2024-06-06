@@ -209,3 +209,17 @@ td input {
 tfoot th:first-child{
     text-align: right;
 }
+
+.color{
+    height: 25px;
+    width: 100px;
+    margin: 20px;
+    border: 1px solid black;
+    border-radius : 5px;
+}
+
+span {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 10px;
+}

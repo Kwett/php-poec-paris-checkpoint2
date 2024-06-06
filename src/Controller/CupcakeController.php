@@ -45,6 +45,19 @@ class CupcakeController extends AbstractController
         );
     }
 
+    public function show(int $id)
+    {
+        $cupcakes = $this->cupcakeManager->selectOneByIdWithAccessories($id);
+        foreach ($cupcakes as $cupcake) {
+            $cupcake["name"] = html_entity_decode($cupcake["name"]);
+
+
+            return $this->twig->render('cupcake/show.html.twig', [
+            'cupcake' => $cupcake
+            ]);
+        }
+    }
+
     /**
      * Display list of cupcakes
      * Route /cupcake/list
@@ -55,7 +68,7 @@ class CupcakeController extends AbstractController
      */
     public function list()
     {
-        $cupcakes = $this->cupcakeManager->getCupcakeAccesories();
+        $cupcakes = $this->cupcakeManager->getCupcakesWithAccesories();
 
         foreach ($cupcakes as &$cupcake) {
             $cupcake["name"] = html_entity_decode($cupcake["name"]);

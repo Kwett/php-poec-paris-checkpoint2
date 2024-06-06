@@ -1,0 +1,23 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<div class="main-container">
+        <h1>{{cupcake.name}}</h1>
+        <div>
+            <div class="cupcake-item">
+                {% include 'Cupcake/_cupcake.html.twig' %}
+            </div>
+            <span>
+                <h2>couleurs</h2>
+                <div class = "color" style = "background-color: {{cupcake.color1}};"></div>
+                <div class = "color" style = "background-color: {{cupcake.color2}};"></div>
+                <div class = "color" style = "background-color: {{cupcake.color3}};"></div>
+            </span>
+            <span>
+                <h2>accessoire : {{ cupcake.aname }}</h2>
+                <img height= "200" width="200" src = "{{cupcake.url}}" alt ="{{cupcake.aname}}">
+            </span>
+        </div>
+    </div>
+<a href = " list">Retourner a la liste</a>
+{% endblock %}
