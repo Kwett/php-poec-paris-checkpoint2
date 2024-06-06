@@ -5,3 +5,10 @@
     justify-content: center;
     align-items: center;
 }
+
+a {
+    background-color: pink;
+    border-radius: 5px;
+    padding: 5px;
+    border: 2px solid darkmagenta;
+}
