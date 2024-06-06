@@ -29,7 +29,8 @@ class CupcakeManager extends AbstractManager
      */
     public function selectAllJoined(string $orderBy = '', string $direction = 'ASC'): array
     {
-        $query = "SELECT cupcake.*, accessory.name, accessory.url FROM " . static::TABLE . " JOIN accessory ON accessory.id = cupcake.accessory_id";
+        $query = "SELECT cupcake.*, accessory.name, accessory.url FROM " . static::TABLE;
+        $query .= " JOIN accessory ON accessory.id = cupcake.accessory_id";
         if ($orderBy) {
             $query .= ' ORDER BY ' . $orderBy . ' ' . $direction;
         }
@@ -43,7 +44,8 @@ class CupcakeManager extends AbstractManager
     public function selectOneByIdJoined(int $id): array|false
     {
         // prepared request
-        $query = "SELECT * FROM " . static::TABLE . " JOIN accessory ON accessory.id = cupcake.accessory_id" . " WHERE cupcake.id=" . $id;
+        $query = "SELECT * FROM " . static::TABLE;
+        $query .= " JOIN accessory ON accessory.id = cupcake.accessory_id" . " WHERE cupcake.id=" . $id;
         $statement = $this->pdo->prepare($query);
         // $statement->bindValue('cupcake.id', $id, \PDO::PARAM_INT);
         $statement->execute();

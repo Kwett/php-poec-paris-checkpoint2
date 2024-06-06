@@ -35,23 +35,23 @@ class CupcakeController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = array_map('trim', array_map('htmlentities', $_POST));
 
-            if(empty($data['name'])) {
+            if (empty($data['name'])) {
                 $errors['name'] = 'Enter a name';
             }
 
-            if(empty($data['color1'])) {
+            if (empty($data['color1'])) {
                 $errors['color1'] = 'Enter a color1';
             }
 
-            if(empty($data['color2'])) {
+            if (empty($data['color2'])) {
                 $errors['color2'] = 'Enter a color2';
             }
 
-            if(empty($data['color3'])) {
+            if (empty($data['color3'])) {
                 $errors['color3'] = 'Enter a color3';
             }
 
-            if(empty($data['accessory'])) {
+            if (empty($data['accessory'])) {
                 $errors['accessory_id'] = 'Enter an accessory';
             }
 
@@ -85,7 +85,6 @@ class CupcakeController extends AbstractController
     public function show($id): string
     {
         $cupcake = $this->manager->selectOneByIdJoined($id);
-        var_dump($cupcake);
         return $this->twig->render('Show/onecupcake.html.twig', ['cupcake' => $cupcake]);
     }
 }
