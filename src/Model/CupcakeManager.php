@@ -28,4 +28,16 @@ class CupcakeManager extends AbstractManager
         $statement->bindValue(':accessory_id', $accessoryId['id'], \PDO::PARAM_STR);
         $statement->execute();
     }
+
+    public function selectAll(string $orderBy = '', string $direction = 'ASC'): array
+    {
+        $query = 'SELECT * FROM cupcake 
+        LEFT JOIN accessory ON cupcake.accessory_id = accessory.id';
+
+        if ($orderBy) {
+            $query .= ' ORDER BY ' . $orderBy . ' ' . $direction;
+        }
+
+        return $this->pdo->query($query)->fetchAll();
+    }
 }
