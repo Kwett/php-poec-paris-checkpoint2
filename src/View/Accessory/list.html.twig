@@ -1,8 +1,18 @@
 {% extends 'layout.html.twig' %}
 
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/accessories.css">
+{% endblock %}
+
 {% block content %}
     <div class="main-container">
         <h1>My accessories</h1>
-        {# TODO Display all accessories here #}
+        <div class="accessories">
+            {% for accessory in accessories %}
+            <div class="accessory">
+                <img src="{{ accessory.url }}" alt={{ accessory.name }}></img>
+            </div>
+        {% endfor %}
+        </div>
     </div>
 {% endblock %}
