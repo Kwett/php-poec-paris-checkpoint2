@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Model\AccessoryManager;
+
 /**
  * Class AccessoryController
  *
@@ -16,9 +18,33 @@ class AccessoryController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
+
+    private $manager;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->manager = new AccessoryManager();
+    }
+
     public function add()
     {
+        $errors = [];
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = array_map('trim', array_map('htmlentities', $_POST));
+
+            if (empty($data['name'])) {
+                $errors['name'] = 'Enter a name';
+            }
+
+            if (empty($data['url'])) {
+                $errors['url'] = 'Enter an url';
+            }
+
+            if (empty($errors)) {
+                $this->manager->insert($data);
+            }
             //TODO Add your code here to create a new accessory
             header('Location:/accessory/list');
         }
@@ -36,6 +62,7 @@ class AccessoryController extends AbstractController
     public function list()
     {
         //TODO Add your code here to retrieve all accessories
-        return $this->twig->render('Accessory/list.html.twig');
+        $accessories = $this->manager->selectAll();
+        return $this->twig->render('Accessory/list.html.twig', ['accessories' => $accessories]);
     }
 }

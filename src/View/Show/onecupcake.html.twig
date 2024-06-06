@@ -1,0 +1,40 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div class="main-container">
+        <h1>One cupcake</h1>
+        <div class="cupcake-list" id="cupcake-list">
+            <div class="cupcake-item">
+                {# You do not have to touch anything on this template #}
+                <div class="cupcake-container">
+                    <div class="cupcake">
+                        <img src="{{ cupcake.url }}" alt="accessory">
+                        <div class="cream">
+                            <div class="cream-1" style="background-color: {{ cupcake.color1 }};">
+                            </div>
+                            <div class="cream-2" style="background-color: {{ cupcake.color2 }};">
+                            </div>
+                            <div class="cream-3" style="background-color: {{ cupcake.color3 }};">
+                            </div>
+                        </div>
+                        <div class="bottom">
+                            <div class="bottom-in">
+                                <div class="face">
+                                    <div class="eyes">
+                                        <div class="left-eye"></div>
+                                        <div class="right-eye"></div>
+                                    </div>
+                                    <div class="mouth"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cupcake-name">{{ cupcake.name }}</div>
+                </div>
+                {# You do not have to touch anything on this template #}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
