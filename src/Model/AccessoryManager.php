@@ -7,7 +7,7 @@ use PDO;
 class AccessoryManager extends AbstractManager
 {
     public const TABLE = 'accessory';
-    public function insert(array $data)
+    public function insert(array $data): void
     {
         $statement = $this->pdo->prepare(
             "INSERT INTO " . self::TABLE .

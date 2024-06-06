@@ -18,7 +18,7 @@ class AccessoryController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function add()
+    public function add(): string
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $accessory = array_map('htmlentities', array_map('trim', $_POST));
@@ -37,7 +37,7 @@ class AccessoryController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function list()
+    public function list(): string
     {
         $accessoryManager = new AccessoryManager();
         $accessories = $accessoryManager->selectAll();

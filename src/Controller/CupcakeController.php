@@ -20,7 +20,7 @@ class CupcakeController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function add()
+    public function add(): string
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $cupcake = array_map('htmlentities', array_map('trim', $_POST));
@@ -43,7 +43,7 @@ class CupcakeController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function list()
+    public function list(): string
     {
         $cupcakeManager = new CupcakeManager();
         $cupcakes = $cupcakeManager->selectAll();
@@ -52,7 +52,7 @@ class CupcakeController extends AbstractController
         ]);
     }
 
-    public function show(string $id)
+    public function show(string $id): string
     {
         $cupcakeManager = new CupcakeManager();
         $cupcake = $cupcakeManager->selectOneById((int) $id);
