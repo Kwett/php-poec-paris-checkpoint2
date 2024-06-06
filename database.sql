@@ -73,3 +73,4 @@ MODIFY
   accessory_id INT,
   created_at DATETIME,
   ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
+  
