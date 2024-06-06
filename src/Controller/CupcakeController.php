@@ -63,4 +63,11 @@ class CupcakeController extends AbstractController
         $cupcakes = $this->cupcakeManager->selectAll();
         return $this->twig->render('Cupcake/list.html.twig', ['cupcakes' => $cupcakes]);
     }
+
+    public function show()
+    {
+        $cupcake = $this->cupcakeManager->selectOneById((int) $_GET['id']);
+
+        return $this->twig->render('Cupcake/show.html.twig', ['cupcake' => $cupcake]);
+    }
 }

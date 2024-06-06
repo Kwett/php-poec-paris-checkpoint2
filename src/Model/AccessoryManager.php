@@ -16,7 +16,7 @@ class AccessoryManager extends AbstractManager
         $statement->execute();
     }
 
-    public function selectOneByName($name): string|false|array
+    public function selectOneByName($name): false|array
     {
         $statement = $this->pdo->prepare("SELECT id FROM " . static::TABLE . " WHERE name=:name");
         $statement->bindValue('name', $name, \PDO::PARAM_STR);

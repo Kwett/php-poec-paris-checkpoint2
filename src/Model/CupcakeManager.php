@@ -40,4 +40,16 @@ class CupcakeManager extends AbstractManager
 
         return $this->pdo->query($query)->fetchAll();
     }
+
+    public function selectOneById(int $id): array|false
+    {
+        $statement = $this->pdo->prepare("SELECT * FROM cupcake 
+        LEFT JOIN accessory 
+        ON cupcake.accessory_id = accessory.id 
+        WHERE cupcake.id=:id");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetch();
+    }
 }
