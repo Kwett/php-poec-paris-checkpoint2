@@ -55,7 +55,7 @@ class CupcakeController extends AbstractController
      */
     public function list()
     {
-        $cupcakes = $this->cupcakeManager->selectAll();
+        $cupcakes = $this->cupcakeManager->getCupcakeAccesories();
 
         foreach ($cupcakes as &$cupcake) {
             $cupcake["name"] = html_entity_decode($cupcake["name"]);

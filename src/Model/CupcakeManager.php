@@ -29,4 +29,17 @@ class CupcakeManager extends AbstractManager
 
         return $statement->execute();
     }
+
+    public function getCupcakeAccesories()
+    {
+        $query =
+            "SELECT c.* , a.*
+            FROM " . self::TABLE . " AS c
+            INNER JOIN accessory AS a
+            ON c.accessory_id = a.id
+            ORDER BY c.id DESC;"
+        ;
+
+        return $this->pdo->query($query)->fetchAll();
+    }
 }
